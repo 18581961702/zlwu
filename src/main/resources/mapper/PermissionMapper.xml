@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uiho.zlwu.dao.PermissionMapper">
+  <resultMap id="BaseResultMap" type="com.uiho.zlwu.model.Permission">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="permission_name" jdbcType="VARCHAR" property="permissionName" />
+    <result column="resource_type" jdbcType="VARCHAR" property="resourceType" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="permission" jdbcType="VARCHAR" property="permission" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="INTEGER" property="createId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_id" jdbcType="INTEGER" property="updateId" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_permission
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.uiho.zlwu.model.Permission">
+    insert into t_permission (id, permission_name, resource_type, 
+      url, permission, status, 
+      create_time, create_id, update_time, 
+      update_id, is_delete)
+    values (#{id,jdbcType=INTEGER}, #{permissionName,jdbcType=VARCHAR}, #{resourceType,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateId,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.uiho.zlwu.model.Permission">
+    update t_permission
+    set permission_name = #{permissionName,jdbcType=VARCHAR},
+      resource_type = #{resourceType,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, permission_name, resource_type, url, permission, status, create_time, 
+    create_id, update_time, update_id, is_delete
+    from t_permission
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, permission_name, resource_type, url, permission, status, create_time, 
+    create_id, update_time, update_id, is_delete
+    from t_permission
+  </select>
+</mapper>

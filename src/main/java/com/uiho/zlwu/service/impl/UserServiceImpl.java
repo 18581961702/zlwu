@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
-@Service("userservice")
+@Service("userService")
 public class UserServiceImpl implements IUserService {
 
     @Autowired(required = false)
@@ -17,5 +18,15 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User findUser(Integer id) {
         return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public User selectUserByAccount(String account) {
+        return userMapper.selectUserByAccount(account);
+    }
+
+    @Override
+    public List<User> findUsers() {
+        return userMapper.selectAll();
     }
 }
